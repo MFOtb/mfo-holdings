@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MFO Holdings</title>
+<meta name="description" content="محمد بن فيحان">
+<meta property="og:title" content="Mohammed bin Faihan">
+<meta property="og:description" content="محمد بن فيحان">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mfo.holdings/">
+<meta property="og:image" content="https://mfo.holdings/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mfo.holdings/og.jpg">
+<meta property="og:site_name" content="MFO Holdings">
+<meta property="og:locale" content="ar_SA">
+<link rel="canonical" href="https://mfo.holdings/">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+:root{--ink:#1d1d1f;--soft:#86868b;--ease:cubic-bezier(.25,.1,.25,1)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{background:#fff;color:var(--ink)}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI','IBM Plex Sans Arabic',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
+a{color:inherit;text-decoration:none}
+
+/* ---- wordmark ---- */
+header{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:center;padding:30px 0;opacity:0;transition:opacity 1.6s var(--ease) .9s}
+body.ready header{opacity:1}
+.wm{font-size:12px;font-weight:600;letter-spacing:.5em;text-indent:.5em;color:var(--ink)}
+
+/* ---- hero portrait ---- */
+#hero{position:relative;min-height:80svh;display:flex;align-items:center;justify-content:center;padding:84px 20px 0}
+.portrait{position:relative;width:min(560px,86vw);will-change:transform}
+.portrait{opacity:0;transform:scale(1.045);transition:opacity 2.2s var(--ease) .25s,transform 2.6s var(--ease) .25s;
+  -webkit-mask-image:radial-gradient(ellipse 78% 82% at 50% 42%,#000 55%,transparent 97%);
+  mask-image:radial-gradient(ellipse 78% 82% at 50% 42%,#000 55%,transparent 97%)}
+body.ready .portrait{opacity:1;transform:none}
+.portrait img{width:100%}
+.p-color{position:relative}
+.p-bw{position:absolute;inset:0;--lx:-9999px;--ly:-9999px;--lr:1px;
+  -webkit-mask-image:radial-gradient(circle var(--lr) at var(--lx) var(--ly),transparent 0 62%,#000 100%);
+  mask-image:radial-gradient(circle var(--lr) at var(--lx) var(--ly),transparent 0 62%,#000 100%);
+  cursor:crosshair}
+
+/* ---- scroll cue ---- */
+.hero-cue{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);opacity:0;animation:rise 1s var(--ease) 1.2s forwards;display:flex;flex-direction:column;align-items:center}
+.hero-cue svg{width:36px;height:36px;display:block;animation:bobber 1.7s ease-in-out infinite}
+.hero-cue svg+svg{margin-top:-24px;opacity:.3;animation-delay:.15s}
+.hero-cue path{fill:none;stroke:var(--ink);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+@keyframes bobber{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+@keyframes rise{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1;transform:translate(-50%,0)}}
+
+/* ---- connecting line ---- */
+.thread{display:flex;justify-content:center;padding:0 0 5vh}
+.thread i{width:1px;height:88px;background:linear-gradient(var(--ink),transparent);transform:scaleY(0);transform-origin:top;transition:transform 1.6s var(--ease)}
+.thread.in i{transform:scaleY(1)}
+
+/* ---- naqsh ---- */
+#naqsh{display:flex;justify-content:center;padding:0 22px 11vh}
+#naqsh img{height:clamp(84px,11vw,124px);width:auto;filter:grayscale(1)}
+
+/* ---- logos ---- */
+#logos{max-width:1060px;margin:0 auto;padding:0 max(22px,4vw) 6vh}
+.lgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.cell{display:flex;align-items:center;justify-content:center;padding:clamp(34px,4.5vw,56px) clamp(18px,3vw,40px);border-radius:22px;transition:background .6s var(--ease),transform .6s var(--ease)}
+.cell:hover{background:#f5f5f7;transform:translateY(-5px)}
+.cell img{max-height:clamp(38px,4.6vw,58px);max-width:min(210px,72%);width:auto;object-fit:contain;filter:grayscale(1);opacity:.85;transition:opacity .5s,filter .7s var(--ease)}
+.cell:hover img{opacity:1;filter:grayscale(0)}
+.cell:nth-child(10){grid-column:2}
+.cell .nasab-mark{max-height:clamp(46px,5.4vw,66px)}
+@media(max-width:620px){.lgrid{grid-template-columns:repeat(2,1fr)}.cell:nth-child(10){grid-column:auto}}
+
+/* ---- reveal ---- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---- footer ---- */
+footer{padding:6vh 20px 56px;display:flex;flex-direction:column;align-items:center;gap:34px}
+.icons{display:flex;gap:14px}
+.ic{width:46px;height:46px;border:1px solid rgba(0,0,0,.16);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .4s var(--ease),border-color .4s,transform .4s var(--ease)}
+.ic svg{width:17px;height:17px;fill:var(--ink);transition:fill .4s}
+.ic:hover{background:var(--ink);border-color:var(--ink);transform:translateY(-3px)}
+.ic:hover svg{fill:#fff}
+.fwm{font-size:10px;font-weight:500;letter-spacing:.45em;text-indent:.45em;color:var(--soft)}
+.credit{direction:ltr;font-size:10.5px;letter-spacing:.08em;color:#8e8e93}
+.credit a{color:#6e6e73;transition:color .3s}
+.credit a:hover{color:var(--ink)}
+
+/* v2 fixes */
+.cell img[alt="زحمة ولا"]{filter:grayscale(1) brightness(.62) contrast(1.3)}
+.cell:hover img[alt="زحمة ولا"]{filter:grayscale(0)}
+.cell img[alt="شيس"]{max-height:clamp(33px,4vw,50px)}
+.cell img[alt="وشم"]{max-height:clamp(45px,5.4vw,67px)}
+</style>
+</head>
+<body>
+
+<header><div class="wm">MFO</div></header>
+
+<section id="hero">
+  <div class="portrait" id="pt">
+    <img class="p-color" src="assets/portrait-color.jpg" alt="">
+    <img class="p-bw" id="pbw" src="assets/portrait-bw.jpg" alt="">
+  </div>
+  <div class="hero-cue" aria-hidden="true">
+    <svg viewBox="0 0 24 24"><path d="M5 9l7 7 7-7"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M5 9l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<div class="thread" id="thread"><i></i></div>
+
+<div id="naqsh" class="reveal"><a href="https://naqsh.com.sa" target="_blank" rel="noopener"><img src="assets/naqsh.png" alt="نقش القابضة" title="نقش القابضة · Naqsh Holding"></a></div>
+
+<section id="logos">
+  <div class="lgrid">
+    <a class="cell reveal" href="https://burooj.pro" target="_blank" rel="noopener"><img src="assets/burooj.png" alt="بروج" title="عنوان البروج لإدارة الأملاك · Burooj"></a>
+    <a class="cell reveal" href="https://buroojair.com" target="_blank" rel="noopener"><img src="assets/burooj-air.png" alt="بروج إير" title="بروج إير · Burooj Air"></a>
+    <a class="cell reveal" href="https://6degrees.com.sa" target="_blank" rel="noopener"><img src="assets/6degrees.png" alt="الدرجات الست" title="الدرجات الست لتقنية المعلومات · 6 Degrees"></a>
+    <a class="cell reveal" href="https://efficiencys.com.sa" target="_blank" rel="noopener"><img src="assets/efficiency-center.png" alt="مركز الكفاءة" title="مركز الكفاءة · Efficiency Center"></a>
+    <a class="cell reveal" href="https://promoe.com.sa" target="_blank" rel="noopener"><img src="assets/promotion-efficiency.png" alt="بروموشن إفيشنسي" title="Promotion Efficiency"></a>
+    <a class="cell reveal" href="https://shace.co/en" target="_blank" rel="noopener"><img src="assets/shace.png" alt="شيس" title="شيس · Shace"></a>
+    <a class="cell reveal" href="https://deets.pro" target="_blank" rel="noopener"><img src="assets/deets.png" alt="ديتس" title="ديتس · Deets"></a>
+    <a class="cell reveal" href="https://washim.co" target="_blank" rel="noopener"><img src="assets/washim.png" alt="وشم" title="وشم · Washim"></a>
+    <a class="cell reveal" href="https://www.zahmaola.com" target="_blank" rel="noopener"><img src="assets/zahma-o-la.png" alt="زحمة ولا" title="زحمة ولا · Zahma O La"></a>
+    <a class="cell reveal" href="https://nasab.digital" target="_blank" rel="noopener"><img class="nasab-mark" src="data:image/svg+xml;utf8,%3Csvg%20width%3D%22120%22%20height%3D%22120%22%20viewBox%3D%220%200%20120%20120%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%0A%20%20%3Ctitle%3ENasab%20%E2%80%94%20The%20Weave%20mark%3C/title%3E%0A%20%20%3Cpath%20d%3D%22M45%2016%20V37%20M45%2053%20V67%20M45%2083%20V104%22%20stroke%3D%22%231E1A17%22%20stroke-width%3D%229%22%20stroke-linecap%3D%22round%22/%3E%0A%20%20%3Cpath%20d%3D%22M75%2016%20V104%22%20stroke%3D%22%23B85C38%22%20stroke-width%3D%229%22%20stroke-linecap%3D%22round%22/%3E%0A%20%20%3Cpath%20d%3D%22M16%2045%20H67%20M83%2045%20H104%22%20stroke%3D%22%231E1A17%22%20stroke-width%3D%229%22%20stroke-linecap%3D%22round%22/%3E%0A%20%20%3Cpath%20d%3D%22M16%2075%20H37%20M53%2075%20H67%20M83%2075%20H104%22%20stroke%3D%22%23E0A63C%22%20stroke-width%3D%229%22%20stroke-linecap%3D%22round%22/%3E%0A%3C/svg%3E%0A" alt="نسَب" title="نسَب · Nasab"></a>
+  </div>
+</section>
+
+<footer>
+  <div class="icons reveal">
+    <a class="ic" href="https://wa.me/966535558889" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.49.71.3 1.27.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.42.25-.7.25-1.29.18-1.42-.08-.12-.28-.2-.57-.35zM12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.73.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.83 9.83 0 0 1 6.99 2.9 9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.88-9.9 9.88zm8.42-18.3A11.8 11.8 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.94L.06 24l6.33-1.66a11.9 11.9 0 0 0 5.66 1.44h.01c6.55 0 11.89-5.33 11.89-11.89 0-3.18-1.24-6.16-3.48-8.4z"/></svg>
+    </a>
+    <a class="ic" href="/cdn-cgi/l/email-protection#a9e4c6c1c8c4c4cccde9c7c8d8dac187cac6c487dac8" aria-label="Email">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 5-8-5V6.5l8 5 8-5v1.74z"/></svg>
+    </a>
+    <a class="ic" href="https://www.linkedin.com/in/mohammed-bin-faihan/" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45z"/></svg>
+    </a>
+    <a class="ic" href="https://github.com/MFOtb" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11.04 11.04 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.26 5.68.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.66.8.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+    </a>
+    <a class="ic" href="https://naqsh.com.sa" target="_blank" rel="noopener" aria-label="naqsh.com.sa">
+      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm7.93 9h-3.02a15.7 15.7 0 0 0-1.2-5.4A8.03 8.03 0 0 1 19.93 11zM12 4.06c.9 1.32 1.6 3.3 1.9 5.94h-3.8c.3-2.64 1-4.62 1.9-5.94zM4.07 13h3.02c.14 1.96.56 3.8 1.2 5.4A8.03 8.03 0 0 1 4.07 13zm3.02-2H4.07a8.03 8.03 0 0 1 4.22-5.4c-.64 1.6-1.06 3.44-1.2 5.4zM12 19.94c-.9-1.32-1.6-3.3-1.9-5.94h3.8c-.3 2.64-1 4.62-1.9 5.94zm2.7-.54c.65-1.6 1.07-3.44 1.21-5.4h3.02a8.03 8.03 0 0 1-4.22 5.4z"/></svg>
+    </a>
+  </div>
+  <div class="fwm">MFO.HOLDINGS</div>
+  <div class="credit">Designed by <a href="https://promoe.com.sa" target="_blank" rel="noopener">Promotion Efficiency</a> · Powered by <a href="https://6degrees.com.sa" target="_blank" rel="noopener">6 Degrees Technologies</a></div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+addEventListener("load",()=>document.body.classList.add("ready"));
+setTimeout(()=>document.body.classList.add("ready"),1000);
+
+/* ---- color lens ---- */
+const pt=document.getElementById("pt"), pbw=document.getElementById("pbw");
+let lx=-500,ly=-500,gx=-500,gy=-500,lr=0,gr=0,active=false;
+function setLens(x,y,r){pbw.style.setProperty("--lx",x+"px");pbw.style.setProperty("--ly",y+"px");pbw.style.setProperty("--lr",r+"px");}
+function toLocal(cx,cy){const b=pt.getBoundingClientRect();return [cx-b.left, cy-b.top];}
+pt.addEventListener("mousemove",e=>{const [x,y]=toLocal(e.clientX,e.clientY);gx=x;gy=y;gr=Math.min(pt.offsetWidth*.30,190);active=true;});
+pt.addEventListener("mouseleave",()=>{gr=0;active=false;});
+pt.addEventListener("touchmove",e=>{const t=e.touches[0];const [x,y]=toLocal(t.clientX,t.clientY);gx=x;gy=y;gr=Math.min(pt.offsetWidth*.30,190);},{passive:true});
+pt.addEventListener("touchend",()=>{gr=0;});
+(function lensLoop(){
+  lx+=(gx-lx)*.14; ly+=(gy-ly)*.14; lr+=(gr-lr)*.10;
+  setLens(lx,ly,Math.max(1,lr)); requestAnimationFrame(lensLoop);
+})();
+/* intro sweep: the lens glides across the face once so the visitor discovers the magic */
+setTimeout(()=>{
+  if(active) return;
+  if(!matchMedia("(hover:hover) and (pointer:fine)").matches) return; // no auto color on touch devices
+  const w=pt.offsetWidth,h=pt.offsetHeight;
+  const path=[[w*.32,h*.42],[w*.5,h*.38],[w*.66,h*.44],[w*.55,h*.62],[w*.42,h*.55]];
+  let i=0;
+  gx=path[0][0];gy=path[0][1];lx=gx;ly=gy;gr=Math.min(w*.30,190);
+  const iv=setInterval(()=>{
+    i++;
+    if(i>=path.length||active){clearInterval(iv);if(!active)gr=0;return;}
+    gx=path[i][0];gy=path[i][1];
+  },650);
+},2400);
+
+/* reveals */
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}
+}),{threshold:.2});
+document.querySelectorAll(".reveal,.thread").forEach(el=>io.observe(el));
+
+/* staggered logo cells */
+document.querySelectorAll(".cell").forEach((c,i)=>c.style.transitionDelay=(i%3*0.08+Math.floor(i/3)*0.05)+"s");
+</script>
+</body>
+</html>
