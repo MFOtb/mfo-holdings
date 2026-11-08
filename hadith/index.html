@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مراجع الحديث — لوحة التقدّم</title>
+<meta name="description" content="مشروع بناء مكتبة مرجعية لحديث النبي ﷺ: الحصر، النسخ، الفهرسة، والخريطة.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0c0e; --panel:#111317; --panel2:#15181d; --line:#23272e;
+  --txt:#e8e6e1; --mut:#9aa0a8; --dim:#6b7280;
+  --gold:#c8a35a; --gold2:#e6c884; --green:#4f9d7a; --red:#b4544a;
+  --r:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{max-width:100%;overflow-x:hidden}
+body{
+  background:var(--bg); color:var(--txt);
+  font-family:"IBM Plex Sans Arabic",-apple-system,"Segoe UI",Tahoma,sans-serif;
+  line-height:1.8; -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(1200px 600px at 80% -10%,rgba(200,163,90,.10),transparent 60%),
+                   radial-gradient(900px 500px at 0% 100%,rgba(79,157,122,.06),transparent 60%);
+  background-attachment:fixed;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+a{color:var(--gold2);text-decoration:none}
+a:hover{text-decoration:underline}
+
+header{padding:56px 0 28px;border-bottom:1px solid var(--line)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--gold);letter-spacing:.3px;border:1px solid rgba(200,163,90,.3);background:rgba(200,163,90,.06);padding:6px 12px;border-radius:99px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(79,157,122,.15)}
+h1{font-size:clamp(30px,5vw,48px);font-weight:600;line-height:1.25;margin:18px 0 10px}
+h1 span{color:var(--gold)}
+.sub{color:var(--mut);font-size:16px;max-width:70ch}
+.meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13px;color:var(--dim)}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:34px 0}
+.stat{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:var(--r);padding:18px 20px}
+.stat b{display:block;font-size:30px;font-weight:600;color:var(--gold2);line-height:1.3}
+.stat small{color:var(--mut);font-size:13px}
+
+section{padding:38px 0;border-bottom:1px solid var(--line)}
+h2{font-size:22px;font-weight:600;margin-bottom:6px}
+.lead{color:var(--mut);font-size:14.5px;margin-bottom:22px}
+
+.track{display:grid;gap:10px}
+.step{display:grid;grid-template-columns:36px 1fr auto;gap:14px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.num{font-size:13px;color:var(--gold);border:1px solid rgba(200,163,90,.35);border-radius:8px;text-align:center;padding:3px 0}
+.step h3{font-size:15px;font-weight:500}
+.step p{font-size:12.5px;color:var(--dim)}
+.badge{font-size:12px;padding:4px 10px;border-radius:99px;white-space:nowrap;border:1px solid}
+.b-done{color:#8fd3b4;border-color:rgba(79,157,122,.4);background:rgba(79,157,122,.1)}
+.b-work{color:var(--gold2);border-color:rgba(200,163,90,.4);background:rgba(200,163,90,.08)}
+.b-wait{color:var(--mut);border-color:var(--line);background:rgba(255,255,255,.02)}
+
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:12px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.chip{font:inherit;font-size:13px;color:var(--mut);background:transparent;border:1px solid var(--line);padding:6px 13px;border-radius:99px;cursor:pointer;transition:.15s}
+.chip:hover{color:var(--txt);border-color:#3a4048}
+.chip.on{color:#0b0c0e;background:var(--gold);border-color:var(--gold);font-weight:500}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:right;font-weight:500;color:var(--dim);font-size:12px;padding:10px 12px;border-bottom:1px solid var(--line)}
+td{padding:11px 12px;border-bottom:1px solid rgba(35,39,46,.6);vertical-align:top}
+tr:hover td{background:rgba(255,255,255,.015)}
+.t{font-weight:500}
+.au{color:var(--mut);font-size:13px}
+.pill{font-size:11.5px;padding:2px 9px;border-radius:99px;border:1px solid var(--line);color:var(--mut);white-space:nowrap}
+.pill.ok{color:#8fd3b4;border-color:rgba(79,157,122,.35)}
+.pill.gone{color:#c98b84;border-color:rgba(180,84,74,.35)}
+
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.note h4{font-size:14px;color:var(--gold2);margin-bottom:6px;font-weight:500}
+.note p{font-size:13.5px;color:var(--mut)}
+
+.next{display:grid;gap:10px}
+.next li{list-style:none;display:flex;gap:12px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 16px;font-size:14px}
+.next .k{color:var(--gold);font-size:12px;border:1px solid rgba(200,163,90,.3);border-radius:6px;padding:1px 7px;margin-top:3px}
+
+footer{padding:34px 0 50px;color:var(--dim);font-size:12.5px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#0b0c0e;font-weight:600;font-size:14px;padding:11px 18px;border-radius:10px}
+.btn:hover{text-decoration:none;background:var(--gold2)}
+.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+.ghost:hover{background:rgba(255,255,255,.03);color:var(--txt)}
+@media(min-width:641px){.only-sm{display:none}}
+@media(max-width:640px){
+  .wrap{padding:0 16px}
+  header{padding:36px 0 22px}
+  .step{grid-template-columns:30px 1fr;row-gap:6px}
+  .step .badge{grid-column:2;justify-self:start}
+  table{font-size:12.5px;min-width:620px}
+  th,td{padding:9px 6px}
+  .hide-sm{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow"><span class="dot"></span> مشروع قائم · المرحلة ١ مكتملة</div>
+  <h1>مراجع <span>الحديث</span><br>لوحة التقدّم والخريطة</h1>
+  <p class="sub">مكتبة مرجعية لحديث النبي ﷺ تبدأ من المصنفات التي سبقت الصحيحين أو عاصرتهما — قبل ٢٦١هـ. كل عمل هنا له معرّف ثابت، وحالة موثّقة، ونسخة تُبنى تدريجيًا.</p>
+  <div class="meta">
+    <span>آخر تحديث: ٨ نوفمبر ٢٠٢٦</span>
+    <span>النطاق: حديثي · قبل ٢٦١هـ</span>
+    <span>المرجع: <a href="https://mfo.holdings">mfo.holdings</a></span>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="stat"><b>٢٦</b><small>عملًا محصورًا</small></div>
+  <div class="stat"><b>٩</b><small>أنواع تصنيفية</small></div>
+  <div class="stat"><b id="copies">٠</b><small>نسخة رقمية مؤمَّنة</small></div>
+  <div class="stat"><b>٥</b><small>أعمال مفقودة أصلًا</small></div>
+</div>
+
+<section id="map">
+  <h2>الخريطة</h2>
+  <p class="lead">خمس مراحل من الحصر إلى الإتاحة — كل مرحلة لها مخرج واضح لا «شغل مفتوح».</p>
+  <div class="track">
+    <div class="step"><div class="num">١</div><div><h3>الحصر والتأسيس</h3><p>تحديد النطاق والمعيار، وحصر الأعمال وتصنيفها</p></div><span class="badge b-done">مكتملة</span></div>
+    <div class="step"><div class="num">٢</div><div><h3>جمع النسخ</h3><p>نسخة رقمية لكل عمل، مع التحقق من الطبعة والسلامة</p></div><span class="badge b-work">جارية</span></div>
+    <div class="step"><div class="num">٣</div><div><h3>الفهرسة</h3><p>بيانات الكتاب: الطبعة، المحقق، الأجزاء، ودرجة الجودة</p></div><span class="badge b-wait">لم تبدأ</span></div>
+    <div class="step"><div class="num">٤</div><div><h3>التحقق</h3><p>مقابلة النسخ ورصد النقص وتوثيق المصدر</p></div><span class="badge b-wait">لم تبدأ</span></div>
+    <div class="step"><div class="num">٥</div><div><h3>الإتاحة</h3><p>صيانة الصفحة والكتالوج وربط النسخ بالدرايف</p></div><span class="badge b-work">جارية</span></div>
+  </div>
+</section>
+
+<section id="catalog">
+  <h2>الكتالوج</h2>
+  <p class="lead">٢٦ عملًا موزّعة على ٩ أنواع. الفلترة بالنوع، والحالة تعكس الأصل لا النسخة.</p>
+  <div class="filters" id="filters"></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>العمل</th><th class="hide-sm">المؤلف</th><th>الوفاة</th><th class="hide-sm">النوع</th><th>الأصل</th><th class="hide-sm">النسخة</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table></div>
+</section>
+
+<section id="log">
+  <h2>ما بحثناه</h2>
+  <p class="lead">خلاصات الجلسة الأولى — تُحفظ هنا لا في الذاكرة.</p>
+  <div class="notes">
+    <div class="note"><h4>«أصح كتاب بعد كتاب الله»</h4><p>اجتهاد أهل الحديث في الصحة، لا نص شرعي. المقصود صحة الأسانيد، لا الشمول ولا الأهمية.</p></div>
+    <div class="note"><h4>البخاري ومسلم</h4><p>يُقرنان في الاستشهاد، ولا يتساويان: البخاري مقدَّم في الصحة، ومسلم أفضل في الصناعة عند بعضهم.</p></div>
+    <div class="note"><h4>الأعمار</h4><p>البخاري ١٩٤–٢٥٦هـ · مسلم ٢٠٢–٢٦١هـ. مسلم من طلبة البخاري وروى عنه.</p></div>
+    <div class="note"><h4>قبل الصحيحين</h4><p>ثلاث طبقات: صحف، ثم موطأ ومصنفات، ثم مسانيد وسنن. ميزة الصحيحين: الالتزام والشرط.</p></div>
+    <div class="note"><h4>«خمسة مصادر»</h4><p>ليست مصطلحًا معتمدًا بهذا اللفظ؛ الأقرب «الأصول الخمسة» وهي بعد البخاري، أو المصادر المبكرة.</p></div>
+    <div class="note"><h4>المعيار</h4><p>خمسة شروط: محفوظ متداول · مصنَّف بأسانيده · قبل ٢٥٦هـ · يمثّل نوعًا · مشهور معتمد.</p></div>
+  </div>
+</section>
+
+<section id="next">
+  <h2>التالي</h2>
+  <p class="lead">مرتّب بالأولوية، وكل بند له مخرج قابل للفحص.</p>
+  <ul class="next">
+    <li><span class="k">١</span> تأمين نسخة رقمية للأعمال الـ٢٦ ورفعها إلى مجلد الدرايف، مع تشذيب ما لا يصلح.</li>
+    <li><span class="k">٢</span> بناء بطاقة بيانات لكل كتاب: الطبعة، المحقق، الأجزاء، مصدر الملف.</li>
+    <li><span class="k">٣</span> إضافة طبقة الشروح والرجال لاحقًا — لا تُخلط بالأصول.</li>
+    <li><span class="k">٤</span> ربط كل سجل في الكتالوج بنسخته ومراجعته دوريًا.</li>
+  </ul>
+</section>
+
+<footer>
+  <span>مشروع مراجع الحديث · إشراف أبو مشعل</span>
+  <span><a href="https://drive.google.com/drive/folders/1nxCe6-zB7AQhyL3aczgvG6nBKd2ASs49">مجلد المراجع في Drive ↗</a></span>
+</footer>
+
+</div>
+
+<script>
+const DATA = {"project": "مشروع مراجع الحديث", "updated": "2026-11-08", "items": [{"id": "SH-01", "title": "صحيفة عبدالله بن عمرو بن العاص", "author": "عبدالله بن عمرو بن العاص", "death": "٦٥هـ", "genre": "الصحف", "status": "مفقودة كمصنف مستقل", "note": "مروية في المسانيد والسنن", "copy": null}, {"id": "SH-02", "title": "صحيفة همام بن منبه", "author": "همام بن منبه", "death": "١٠١هـ", "genre": "الصحف", "status": "وصلت", "note": "برواية عبدالله بن وهب، مطبوعة", "copy": null}, {"id": "JM-01", "title": "جامع ابن جريج", "author": "عبدالملك بن عبدالعزيز بن جريج", "death": "١٥٠هـ", "genre": "الجوامع", "status": "مفقود", "note": "مروي في مصنفات لاحقة", "copy": null}, {"id": "JM-02", "title": "جامع معمر بن راشد", "author": "معمر بن راشد الأزدي", "death": "١٥٣هـ", "genre": "الجوامع", "status": "مفقود", "note": "منشور ملحقًا بمصنف عبدالرزاق", "copy": null}, {"id": "JM-03", "title": "جامع سعيد بن أبي عروبة", "author": "سعيد بن أبي عروبة", "death": "١٥٦هـ", "genre": "الجوامع", "status": "مفقود", "note": "مروي", "copy": null}, {"id": "JM-04", "title": "جامع سفيان الثوري", "author": "سفيان بن سعيد الثوري", "death": "١٦١هـ", "genre": "الجوامع", "status": "مفقود", "note": "مروي", "copy": null}, {"id": "MW-01", "title": "الموطأ", "author": "مالك بن أنس", "death": "١٧٩هـ", "genre": "الموطآت", "status": "مطبوع", "note": "وله روايات: ابن وهب، ابن القاسم، سويد", "copy": null}, {"id": "MS-01", "title": "المصنف", "author": "عبدالرزاق بن همام الصنعاني", "death": "٢١١هـ", "genre": "المصنفات", "status": "مطبوع", "note": "", "copy": null}, {"id": "MS-02", "title": "المصنف", "author": "عبدالله بن محمد بن أبي شيبة", "death": "٢٣٥هـ", "genre": "المصنفات", "status": "مطبوع", "note": "", "copy": null}, {"id": "MN-01", "title": "المسند", "author": "سليمان بن داود الطيالسي", "death": "٢٠٤هـ", "genre": "المسانيد", "status": "مطبوع", "note": "", "copy": null}, {"id": "MN-02", "title": "المسند", "author": "عبدالله بن الزبير الحميدي", "death": "٢١٩هـ", "genre": "المسانيد", "status": "مطبوع", "note": "", "copy": null}, {"id": "MN-03", "title": "المسند", "author": "عبدالله بن محمد بن أبي شيبة", "death": "٢٣٥هـ", "genre": "المسانيد", "status": "مطبوع", "note": "دار الوطن، تحقيق عادل العزازي", "copy": null}, {"id": "MN-04", "title": "المسند", "author": "إسحاق بن راهويه", "death": "٢٣٨هـ", "genre": "المسانيد", "status": "مفقود", "note": "بقيت قطعه", "copy": null}, {"id": "MN-05", "title": "المسند", "author": "أحمد بن حنبل", "death": "٢٤١هـ", "genre": "المسانيد", "status": "مطبوع", "note": "", "copy": null}, {"id": "MN-06", "title": "المسند", "author": "عبد بن حميد الكشي", "death": "٢٤٩هـ", "genre": "المسانيد", "status": "مطبوع", "note": "", "copy": null}, {"id": "SN-01", "title": "السنن", "author": "سعيد بن منصور الخراساني", "death": "٢٢٧هـ", "genre": "السنن", "status": "مطبوع", "note": "", "copy": null}, {"id": "SN-02", "title": "السنن (المسند)", "author": "عبدالله بن عبدالرحمن الدارمي", "death": "٢٥٥هـ", "genre": "السنن", "status": "مطبوع", "note": "", "copy": null}, {"id": "ZH-01", "title": "الزهد", "author": "عبدالله بن المبارك", "death": "١٨١هـ", "genre": "الزهد والرقائق", "status": "مطبوع", "note": "", "copy": null}, {"id": "ZH-02", "title": "الزهد", "author": "وكيع بن الجراح", "death": "١٩٧هـ", "genre": "الزهد والرقائق", "status": "مطبوع", "note": "", "copy": null}, {"id": "ZH-03", "title": "الزهد", "author": "أسد بن موسى الأموي", "death": "٢١٢هـ", "genre": "الزهد والرقائق", "status": "مطبوع", "note": "", "copy": null}, {"id": "ZH-04", "title": "الزهد", "author": "أحمد بن حنبل", "death": "٢٤١هـ", "genre": "الزهد والرقائق", "status": "مطبوع", "note": "", "copy": null}, {"id": "ZH-05", "title": "الزهد", "author": "هناد بن السري", "death": "٢٤٣هـ", "genre": "الزهد والرقائق", "status": "مطبوع", "note": "", "copy": null}, {"id": "AM-01", "title": "الأموال", "author": "القاسم بن سلام (أبو عبيد)", "death": "٢٢٤هـ", "genre": "الأموال", "status": "مطبوع", "note": "", "copy": null}, {"id": "AM-02", "title": "الأموال", "author": "حميد بن زنجويه", "death": "٢٥١هـ", "genre": "الأموال", "status": "مطبوع", "note": "", "copy": null}, {"id": "SA-01", "title": "الجامع الصحيح", "author": "محمد بن إسماعيل البخاري", "death": "٢٥٦هـ", "genre": "الصحيحان", "status": "مطبوع", "note": "", "copy": null}, {"id": "SA-02", "title": "الجامع الصحيح", "author": "مسلم بن الحجاج النيسابوري", "death": "٢٦١هـ", "genre": "الصحيحان", "status": "مطبوع", "note": "", "copy": null}]};
+const rows = document.getElementById('rows');
+const filters = document.getElementById('filters');
+const genres = ['الكل', ...new Set(DATA.items.map(x=>x.genre))];
+let active = 'الكل';
+
+function ar(n){return String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d])}
+
+genres.forEach(g=>{
+  const b=document.createElement('button');
+  b.className='chip'+(g===active?' on':''); b.textContent=g;
+  b.onclick=()=>{active=g;[...filters.children].forEach(c=>c.classList.toggle('on',c.textContent===g));render()};
+  filters.appendChild(b);
+});
+
+function render(){
+  rows.innerHTML='';
+  let i=0;
+  DATA.items.filter(x=>active==='الكل'||x.genre===active).forEach(x=>{
+    i++;
+    const tr=document.createElement('tr');
+    const gone = x.status.includes('مفقود');
+    tr.innerHTML = `
+      <td>${ar(i)}</td>
+      <td><div class="t">${x.title}</div><div class="au only-sm">${x.author}</div></td>
+      <td class="au hide-sm">${x.author}</td>
+      <td>${x.death}</td>
+      <td class="hide-sm">${x.genre}</td>
+      <td><span class="pill ${gone?'gone':'ok'}">${x.status}</span></td>
+      <td class="hide-sm"><span class="pill">${x.copy? 'مؤمَّنة':'قيد الجمع'}</span></td>`;
+    rows.appendChild(tr);
+  });
+}
+render();
+document.getElementById('copies').textContent = ar(DATA.items.filter(x=>x.copy).length);
+</script>
+</body>
+</html>
